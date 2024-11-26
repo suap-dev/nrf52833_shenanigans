@@ -1,0 +1,11 @@
+[package]
+name = "nrf52833_playground"
+version = "0.1.0"
+edition = "2018"
+
+[dependencies]
+microbit-v2 = "0.12.0"
+cortex-m = "0.7.3"
+cortex-m-rt = "0.7.0"
+panic-halt = "0.2.0"
+nrf52833-hal = "0.14.1"
