@@ -2,15 +2,15 @@
 #![no_std]
 
 use cortex_m_rt::entry;
+use embedded_hal::digital::OutputPin;
 use nrf52833_hal::{
     gpio::{Disconnected, Level, Output, Pin, PushPull},
     pac::Peripherals,
-    prelude::OutputPin,
     Timer,
 };
 use panic_halt as _;
 
-const LIGHTUP_CYCLES: u32 = 100_000;
+const LIGHTUP_CYCLES: u32 = 10_000;
 
 const FIRST_PIN: u32 = 0;
 const LAST_PIN: u32 = 48;
@@ -34,6 +34,7 @@ fn main() -> ! {
         unsafe { Pin::<Disconnected>::from_psel_bits(i as u32) }.into_push_pull_output(Level::Low)
     });
 
+    #[allow(unused_must_use)]
     loop {
         // flash GPIO
         for pin in GPIO {
@@ -71,7 +72,7 @@ fn main() -> ! {
         // flash everything YOLO
         for pin in 1..=48 {
             pins[pin].set_high();
-            timer.delay(1 * LIGHTUP_CYCLES);
+            timer.delay(LIGHTUP_CYCLES);
             pins[pin].set_low();
         }
     }
