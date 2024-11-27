@@ -9,3 +9,6 @@ cortex-m-rt = "0.7.0"
 panic-halt = "1.0.0"
 nrf52833-hal = "0.18.0"
 embedded-hal = "1.0.0"
+
+[lints.clippy]
+pedantic = "warn"
