@@ -4,6 +4,7 @@ version = "0.2.1"
 edition = "2021"
 
 [dependencies]
+libm = "0.2.11"
 sh1106 = "0.5.0"
 cortex-m = "0.7.3"
 panic-halt = "1.0.0"
@@ -12,5 +13,14 @@ embedded-hal = "1.0.0"
 nrf52833-hal = "0.18.0"
 embedded-graphics = "0.8.1"
 
+# micromath = "2.1.0"
+
 [lints.clippy]
 pedantic = "warn"
+
+[profile.release]
+lto = true
+strip = true
+panic = "abort"
+opt-level = "z"   # results in ~40% smaller binary than opt-level = 3
+codegen-units = 1

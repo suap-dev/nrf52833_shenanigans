@@ -1,5 +1,8 @@
 [target.'cfg(all(target_arch = "arm", target_os = "none"))']
-rustflags = ["-C", "link-arg=-Tlink.x"]
+rustflags = [
+    # "-Zfmt-debug=none",
+    "-Clink-arg=-Tlink.x",
+]
 
 [build]
 target = "thumbv7em-none-eabihf"
